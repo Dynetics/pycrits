@@ -13,3 +13,7 @@ web requests to the CRITs authenticated API themselves.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details
+
+
+## Documentation
+Further documentation for this project can be found at its offical github: https://github.com/Dynetics/pycrits

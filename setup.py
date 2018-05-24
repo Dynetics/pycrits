@@ -37,7 +37,7 @@ setup(
 		'Development Status :: 3 - Alpha',
 		'Intended Audience :: Developers',
 		'Topic :: Software Development :: Build Tools',
-		'License :: MIT',
+		'License :: OSI Approved :: MIT License',
 		'Programming Language :: Python :: 2.7',
 	],
 	keywords='pycrits',
