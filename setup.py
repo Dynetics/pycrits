@@ -27,7 +27,7 @@ else:
 
 setup(
 	name='pycrits',
-	version='1.0.0',
+	version='1.0.2',
 	description='Python Library for CRITs',
 	long_description=long_description,
 	author='Carter Church',
