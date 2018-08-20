@@ -40,51 +40,51 @@ SOFTWARE.
 
 class critsAPIException(Exception):
 
-	'''
-	Generic Exception.
-	'''
+    '''
+    Generic Exception.
+    '''
 
-	def __init__(self, message):
-		self.message = message
+    def __init__(self, message):
+        self.message = message
 
-	def __str__(self):
-		log_message(self.message)
-		return self.message
+    def __str__(self):
+        log_message(self.message)
+        return self.message
 
 class critsInputError(critsAPIException):
-	'''
-	Exception raised for errors in CRITs input.
+    '''
+    Exception raised for errors in CRITs input.
 
-	Attributes:
+    Attributes:
 
-		expr -- Input expression in which the error occurred
-		msg  -- Explanation of the error
-	'''
-	#def __init__(self, expr, msg):
-	#	self.expr = expr
-	#	self.msg = msg
+        expr -- Input expression in which the error occurred
+        msg  -- Explanation of the error
+    '''
+    #def __init__(self, expr, msg):
+    #    self.expr = expr
+    #    self.msg = msg
 
 
 class critsAccessTokenError(critsAPIException):
 
-	'''
-	Exception for when we the developer don't set a token before instantiating
-	an object.
-	'''
+    '''
+    Exception for when we the developer don't set a token before instantiating
+    an object.
+    '''
 
 
 class critsFetchError(critsAPIException):
 
-	'''
-	Exception for when a GET or POST attempt fails.
-	'''
+    '''
+    Exception for when a GET or POST attempt fails.
+    '''
 
 
 class critsValueError(critsAPIException):
 
-	'''
-	Exception for when we are given a value we are not expecting or is invalid.
-	'''
+    '''
+    Exception for when we are given a value we are not expecting or is invalid.
+    '''
 
 class critsAttributeError(critsAPIException):
 

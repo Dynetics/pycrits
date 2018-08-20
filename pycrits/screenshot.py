@@ -8,10 +8,9 @@ from .vocabulary import CRITsScreenshot as scr
 
 class Screenshot(Common):
     '''
-    
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'screenshots/'
+    _URL = '/' + c.API + c.VERSION + 'screenshots/'
 
     _fields = [
 
@@ -22,6 +21,7 @@ class Screenshot(Common):
         scr.HEIGHT,
         scr.MD5,
         scr.MODIFIED,
+        scr.REFERENCE,
         scr.SCHEMA_VERSION,
         scr.SCREENSHOT,
         scr.SOURCE,

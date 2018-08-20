@@ -10,7 +10,7 @@ class PCAP(Common):
     '''
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'pcaps/'
+    _URL = '/' + c.API + c.VERSION + 'pcaps/'
 
     _fields = [
         pca.ID,
@@ -27,6 +27,7 @@ class PCAP(Common):
         pca.MD5,
         pca.MODIFIED,
         pca.OBJECTS,
+        pca.REFERENCE,
         pca.RELATIONSHIPS,
         pca.RELEASABILITY,
         pca.SCHEMA_VERSION,
@@ -41,7 +42,7 @@ class PCAP(Common):
         pca.RELATED_MD5,
         pca.RELATED_TYPE,
         pca.RELATIONSHIP,
-        ]
+    ]
 
     _default_fields = [
         pca.SOURCE,

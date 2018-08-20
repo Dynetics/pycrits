@@ -8,10 +8,9 @@ from .vocabulary import CRITsTarget as tar
 
 class Target(Common):
     '''
-    
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'targets/'
+    _URL = '/' + c.API + c.VERSION + 'targets/'
 
     _fields = [
         tar.ID,
@@ -40,7 +39,7 @@ class Target(Common):
         tar.ORGANIZATION_ID,
         tar.TITLE,
         tar.NOTE,
-        ]
+    ]
 
 
     _default_fields = [

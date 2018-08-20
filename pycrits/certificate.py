@@ -7,10 +7,10 @@ from .vocabulary import CRITsCommon as cc
 from .vocabulary import CRITsCertificate as cer
 
 class Certificate(Common):
-    '''     
+    '''
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'certificates/'
+    _URL = '/' + c.API + c.VERSION + 'certificates/'
 
     _fields = [
         cer.ID,
@@ -26,6 +26,7 @@ class Certificate(Common):
         cer.MD5,
         cer.MODIFIED,
         cer.OBJECTS,
+        cer.REFERENCE,
         cer.RELATIONSHIPS,
         cer.RELEASABILITY,
         cer.SCHEMA_VERSION,

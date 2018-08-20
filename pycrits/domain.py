@@ -8,10 +8,9 @@ from .vocabulary import CRITsDomain as dom
 
 class Domain(Common):
     '''
-    
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'domains/'
+    _URL = '/' + c.API + c.VERSION + 'domains/'
 
     _fields = [
         dom.ID,
@@ -24,6 +23,7 @@ class Domain(Common):
         dom.LOCATIONS,
         dom.MODIFIED,
         dom.OBJECTS,
+        dom.REFERENCE,
         dom.RELATIONSHIPS,
         dom.RELEASABILITY,
         dom.SCHEMA_VERSION,

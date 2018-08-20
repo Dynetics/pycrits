@@ -8,10 +8,9 @@ from .vocabulary import CRITsSignature as sig
 
 class Signature(Common):
     '''
-    
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'signatures/'
+    _URL = '/' + c.API + c.VERSION + 'signatures/'
 
     _fields = [
         sig.ID,
@@ -30,6 +29,7 @@ class Signature(Common):
         sig.MD5,
         sig.MODIFIED,
         sig.OBJECTS,
+        sig.REFERENCE,
         sig.RELATIONSHIPS,
         sig.RELEASABILITY,
         sig.SCHEMA_VERSION,
@@ -44,7 +44,7 @@ class Signature(Common):
 
         # Exclusively Post Params
         sig.COPY_RELATIONSHIPS, #Requires Link ID
-        ]
+    ]
 
     _default_fields = [
         sig.TITLE,

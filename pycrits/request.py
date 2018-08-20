@@ -57,7 +57,6 @@ from .errors import (
     critsValueError
 )
 
-
 class Broker(object):
 
     '''
@@ -107,7 +106,7 @@ class Broker(object):
                 response[R.TYPE] = error.get(R.TYPE, None)
                 response[R.CODE] = error.get(R.CODE, None)
                 response[R.FBTRACE_ID] = error.get(R.FBTRACE_ID, None)
-            raise critsFetchError(response)    
+            raise critsFetchError(response)
         try:
             results = json.loads(resp.text)
         except:
@@ -135,8 +134,8 @@ class Broker(object):
                     params[("c-" + key)] = query[key]
                 else:
                     raise critsValueError(key + " is not a field this type")
-        
-        ## Fields to return must be passed to crits as a comma-delimited string 
+
+        ## Fields to return must be passed to crits as a comma-delimited string
         if returnfields:
             fieldstoreturn = ""
             for item in fieldstoreturn:
@@ -349,7 +348,6 @@ class Broker(object):
         :type verify: bool, str
         :returns: dict (using json.loads())
         '''
-
         if not params:
             params = dict()
         if headers is None:
@@ -501,9 +499,9 @@ class Broker(object):
                 #next_ = results[t.PAGING][t.NEXT]
                 next_ = get_api_url() + results[c.META][p.NEXT]
                 ## Remove these prints in produciton - much faster
-                print next_
-                print '\n\nGETTING NEXT\n\n'
-                print '\n\n'
+                #print next_
+                #print '\n\nGETTING NEXT\n\n'
+                #print '\n\n'
             except:
                 log_message('No next in Pager to follow.')
                 next_ = False

@@ -41,158 +41,157 @@ import os
 
 from .errors import critsAccessTokenError
 from .vocabulary import CRITsAccessToken as at
+from .__init__ import __ACCESS_TOKEN
 
-
-__ACCESS_TOKEN = None
 # File level global
 
 
 def _read_token_file(token_file):
-	'''
-	Read a token file. Separated out for easy mocking during unit testing.
+    '''
+    Read a token file. Separated out for easy mocking during unit testing.
 
-	Args:
-		token_file (str): The full path and filename of the access token file.
-	
-	Returns:
-		str: The first line of the token file
-	
-	Raises:
-		critsAccessTokenError
-	'''
+    Args:
+        token_file (str): The full path and filename of the access token file.
 
-	try:
-		with open(token_file, 'r') as infile:
-			return infile.readline().strip()
-	except IOError as e:
-		raise critsAccessTokenError(str(e))
+    Returns:
+        str: The first line of the token file
+
+    Raises:
+        critsAccessTokenError
+    '''
+
+    try:
+        with open(token_file, 'r') as infile:
+            return infile.readline().strip()
+    except IOError as e:
+        raise critsAccessTokenError(str(e))
 
 def get_api_params():
-	'''
-	'''
+    '''
+    '''
 
-	global __ACCESS_TOKEN
+    global __ACCESS_TOKEN
 
-	if not __ACCESS_TOKEN:
-		access_token()
+    if not __ACCESS_TOKEN:
+        access_token()
 
-	if not __ACCESS_TOKEN:
-		raise critsAccessTokenError('Must access_token() before instantiating')
+    if not __ACCESS_TOKEN:
+        raise critsAccessTokenError('Must access_token() before instantiating')
 
-	return {'username': __ACCESS_TOKEN.split('|')[1], 'api_key': __ACCESS_TOKEN.split('|')[2]}
+    return {'username': __ACCESS_TOKEN.split('|')[1], 'api_key': __ACCESS_TOKEN.split('|')[2]}
 
 
 def get_access_token():
-	'''
-	Returns:
-		str: Returns the existing access token if access_token() has been called.
-			 Will attempt to access_token() in the case that there is no access token.
+    '''
+    Returns:
+        str: Returns the existing access token if access_token() has been called.
+             Will attempt to access_token() in the case that there is no access token.
 
-	Raises:
-		critsAccessTokenError
-	'''
+    Raises:
+        critsAccessTokenError
+    '''
 
-	global __ACCESS_TOKEN
+    global __ACCESS_TOKEN
 
-	if not __ACCESS_TOKEN:
-		access_token()
+    if not __ACCESS_TOKEN:
+        access_token()
 
-	if not __ACCESS_TOKEN:
-		raise critsAccessTokenError('Must access_token() before instantiating')
+    if not __ACCESS_TOKEN:
+        raise critsAccessTokenError('Must access_token() before instantiating')
 
-	return __ACCESS_TOKEN
+    return __ACCESS_TOKEN
 
 def get_api_url():
-	'''
-	Returns:
-		str: The fully qualified URL for the CRITs API.
+    '''
+    Returns:
+        str: The fully qualified URL for the CRITs API.
 
-	Raises:
-		critsAccessTokenError
-	'''
+    Raises:
+        critsAccessTokenError
+    '''
 
-	token = get_access_token()
-	try:
-		return token.split('|')[0]
-	except:
-		raise critsAccessTokenError('Could not derive the crits URL from the token')
+    token = get_access_token()
+    try:
+        return token.split('|')[0]
+    except:
+        raise critsAccessTokenError('Could not derive the crits URL from the token')
 
 def get_user_id():
-	'''
-	Returns:
-		str: The user_id.
+    '''
+    Returns:
+        str: The user_id.
 
-	Raises:
-		critsAccessTokenError
-	'''
+    Raises:
+        critsAccessTokenError
+    '''
 
-	token = get_access_token()
-	try:
-		return token.split('|')[1]
-	except:
-		raise critsAccessTokenError('Could not derive user-id from token')
+    token = get_access_token()
+    try:
+        return token.split('|')[1]
+    except:
+        raise critsAccessTokenError('Could not derive user-id from token')
 
 
 def _find_token_file():
-	'''
-	Returns:
-		str: The full path to the CRITS API token file
+    '''
+    Returns:
+        str: The full path to the CRITS API token file
 
-	'''
+    '''
 
-	for loc in [os.curdir, os.path.expanduser('~')]:
-		filepath = os.path.join(loc, '.crits')
-		if os.path.exists(filepath):
-			return filepath
+    for loc in [os.curdir, os.path.expanduser('~')]:
+        filepath = os.path.join(loc, '.crits')
+        if os.path.exists(filepath):
+            return filepath
 
-	return None
+    return None
 
 
 def access_token(crits_url=None, user_id=None, api_key=None, token_file=None):
-	'''
-	Use the user_id and api_key to store the access_token globally for all
-	instantiated objects to leverage.
+    '''
+    Use the user_id and api_key to store the access_token globally for all
+    instantiated objects to leverage.
 
-	There are many ways to specify the user_id and api_key. In order, we will try:
-	 1. Use the value of the 'CRITS_ACCESS_TOKEN' environment variable.
-	 2. Use the concatenation of the 
-	 		'CRITS_API_URL', 'CRITS_USER_ID' and 'CRITS_API_KEY' environment variables.
-	 3. Use the first line of the file '$PWD/.crits' or ~/.crits'
-	 4. Use the concatenation of the user_id and api_key parameters
-	 5. Use the first line of the file 'token_file'
+    There are many ways to specify the user_id and api_key. In order, we will try:
+     1. Use the value of the 'CRITS_ACCESS_TOKEN' environment variable.
+     2. Use the concatenation of the 
+             'CRITS_API_URL', 'CRITS_USER_ID' and 'CRITS_API_KEY' environment variables.
+     3. Use the first line of the file '$PWD/.crits' or ~/.crits'
+     4. Use the concatenation of the user_id and api_key parameters
+     5. Use the first line of the file 'token_file'
 
-	Args:
-		user_id (str, optional): The user id to use
-		api_key (str, optional): The api key to use
-		token_file (str, optional): The full path to the CRITS API token file
+    Args:
+        user_id (str, optional): The user id to use
+        api_key (str, optional): The api key to use
+        token_file (str, optional): The full path to the CRITS API token file
 
-	Raises:
-		critsAccessTokenError
-	'''
+    Raises:
+        critsAccessTokenError
+    '''
 
-	global __ACCESS_TOKEN
+    global __ACCESS_TOKEN
 
-	# 1. Use the concatenation of the user_id and api_key parameters
-	if crits_url and user_id and api_key:
-		__ACCESS_TOKEN = crits_url + '|' + user_id + '|' + api_key
-		return
+    # 1. Use the concatenation of the user_id and api_key parameters
+    if crits_url and user_id and api_key:
+        __ACCESS_TOKEN = crits_url + '|' + user_id + '|' + api_key
+        return
 
-	# 2. Use the value of the 'CRITS_ACCESS_TOKEN' environment variable.
-	__ACCESS_TOKEN = os.environ.get(at.CRITS_ACCESS_TOKEN, None)
-	if __ACCESS_TOKEN:
-		return
+    # 2. Use the value of the 'CRITS_ACCESS_TOKEN' environment variable.
+    __ACCESS_TOKEN = os.environ.get(at.CRITS_ACCESS_TOKEN, None)
+    if __ACCESS_TOKEN:
+        return
 
-	# 3. Use the concatenation of the 'CRITS_USER_ID' and 'CRITS_API_KEY' environment variables.
-	env_crits_url = os.environ.get(at.CRITS_API_URL, None)
-	env_user_id = os.environ.get(at.CRITS_USER_ID, None)
-	env_api_key = os.environ.get(at.CRITS_API_KEY, None)
-	if env_crits_url and env_user_id and env_api_key:
-		__ACCESS_TOKEN = env_crits_url + '|' + env_user_id + '|' + env_api_key
-		return
+    # 3. Use the concatenation of the 'CRITS_USER_ID' and 'CRITS_API_KEY' environment variables.
+    env_crits_url = os.environ.get(at.CRITS_API_URL, None)
+    env_user_id = os.environ.get(at.CRITS_USER_ID, None)
+    env_api_key = os.environ.get(at.CRITS_API_KEY, None)
+    if env_crits_url and env_user_id and env_api_key:
+        __ACCESS_TOKEN = env_crits_url + '|' + env_user_id + '|' + env_api_key
+        return
 
-	# 4. Use the first line of the file 'token_file'
-	if token_file:
-		__ACCESS_TOKEN = _read_token_file(token_file)
-		return
+    # 4. Use the first line of the file 'token_file'
+    if token_file:
+        __ACCESS_TOKEN = _read_token_file(token_file)
+        return
 
-	raise critsAccessTokenError('Unable to set access token.')
+    raise critsAccessTokenError('Unable to set access token.')

@@ -80,6 +80,7 @@ class CRITsActor(CRITsCommon, CRITsPatchCommon):
     INTENDED_EFFECTS = 'intended_effects'
     MOTIVATIONS = 'motivations'
     NAME = 'name'
+    REFERENCE = 'reference'
     RELEASIBILITY = 'releasability'
     SOPHISTICATIONS = 'sophistications'
     SOURCE = 'source'
@@ -114,9 +115,10 @@ class CRITsActorIdentifier:
 
 
 class CRITsBackdoor(CRITsCommon, CRITsPatchCommon):
-    
+
     ALIASES = 'aliases'
     NAME = 'name'
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     SOURCE = 'source'
     VERSION = 'version'
@@ -130,7 +132,7 @@ class CRITsBackdoor(CRITsCommon, CRITsPatchCommon):
 
 
 class CRITsCampaign(CRITsCommon, CRITsPatchCommon):
-    
+
     ACTIVE = 'active'
     ACTOR_COUNT = 'actor_count'
     ALIASES = 'aliases'
@@ -160,6 +162,7 @@ class CRITsCertificate(CRITsCommon, CRITsPatchCommon):
     FILENAME = 'filename'
     FILETYPE = 'filetype'
     MD5 = 'md5'
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     SIZE = 'size'
     SOURCE = 'source'
@@ -190,6 +193,7 @@ class CRITsDomain(CRITsCommon, CRITsPatchCommon):
 
     ANALYST = 'analyst'
     DOMAIN = 'domain' # If this does not have a url suffix (.com, etc), this WILL fail (currently without error)
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     SOURCE = 'source'
     TYPE = 'type'
@@ -220,6 +224,7 @@ class CRITsEmail(CRITsCommon, CRITsPatchCommon):
     ORIGINATING_IP = 'originating_ip'
     RAW_BODY = 'raw_body'
     RAW_HEADERS = 'raw_headers'
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     REPLY_TO = 'reply_to'
     SENDER = 'sender'
@@ -247,11 +252,12 @@ class CRITsEvent(CRITsCommon, CRITsPatchCommon):
 
     DESCRIPTION = 'description'
     EVENT_ID = 'event_id'
-    EVENT_TYPE = 'event_type' # Must be one of the types detailed in UI selection 
+    EVENT_TYPE = 'event_type' # Must be one of the types detailed in UI selection
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     SOURCE = 'source'
-    TITLE = 'title' 
-    
+    TITLE = 'title'
+
     # Unique POST Parameters:
     DATE = 'date'
 
@@ -264,6 +270,7 @@ class CRITsExploit(CRITsCommon, CRITsPatchCommon):
     CVE = 'cve'
     DESCRIPTION = 'description'
     NAME = 'name'
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     SOURCE = 'source'
 
@@ -274,7 +281,6 @@ class CRITsExploit(CRITsCommon, CRITsPatchCommon):
     # NONE
 
 
-
 class CRITsIndicator(CRITsCommon, CRITsPatchCommon):
 
     ACTIVITY = 'activity'
@@ -282,6 +288,7 @@ class CRITsIndicator(CRITsCommon, CRITsPatchCommon):
     DESCRIPTION = 'description'
     IMPACT = 'impact'
     LOWER = 'lower'
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     SOURCE = 'source'
     THREAT_TYPES = 'threat_types'
@@ -308,9 +315,10 @@ class CRITsIndicator(CRITsCommon, CRITsPatchCommon):
 
 
 class CRITsIP(CRITsCommon, CRITsPatchCommon):
-    
+
     DESCRIPTION = 'description'
-    IP = 'ip' 
+    IP = 'ip'
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     SOURCE = 'source'
     TYPE = 'type'
@@ -324,7 +332,6 @@ class CRITsIP(CRITsCommon, CRITsPatchCommon):
     # NONE
 
 
-
 class CRITsPCAP(CRITsCommon, CRITsPatchCommon):
 
     CONTENTTYPE = 'contentType'  #Odd that this cointains a capital letter
@@ -333,6 +340,7 @@ class CRITsPCAP(CRITsCommon, CRITsPatchCommon):
     FILENAME = 'filename'
     LENGTH = 'length'
     MD5 = 'md5'
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     SOURCE = 'source'
 
@@ -355,6 +363,7 @@ class CRITsRaw(CRITsCommon, CRITsPatchCommon):
     INLINES = 'inlines'
     LINK_ID = 'link_id'
     MD5 = 'md5'
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     SOURCE = 'source'
     TITLE = 'title'
@@ -385,6 +394,7 @@ class CRITsSample(CRITsCommon, CRITsPatchCommon):
     PASSWORD = 'password'
     FILE_FORMAT = 'file_format'
     MIMETYPE = 'mimetype'
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     SHA1 = 'sha1'
     SHA256 = 'sha256'
@@ -407,7 +417,7 @@ class CRITsSample(CRITsCommon, CRITsPatchCommon):
 ## This does not follow the typical pattern (Not a TLO)
 ## Calling non-TLO's via the API will soon be deprecated
 class CRITsScreenshot():
-    
+
     ID = '_id'
     ANALYST = 'analyst'
     CREATED = 'created'
@@ -416,6 +426,7 @@ class CRITsScreenshot():
     HEIGHT = 'height'
     MD5 = 'md5'
     MODIFIED ='modified'
+    REFERENCE = 'reference'
     SCHEMA_VERSION = 'schema_version'
     SCREENSHOT = 'screenshot'
     SOURCE = 'source'
@@ -432,6 +443,7 @@ class CRITsScreenshot():
     # Unique Patch Actions:
     # NONE
 
+
 class CRITsSignature(CRITsCommon, CRITsPatchCommon):
 
     DATA = 'data'
@@ -442,6 +454,7 @@ class CRITsSignature(CRITsCommon, CRITsPatchCommon):
     DESCRIPTION = 'description'
     LINK_ID = 'link_id'
     MD5 = 'md5'
+    REFERENCE = 'reference'
     RELEASABILITY = 'releasability'
     SCHEMA_VERSION = 'schema_version'
     SCREENSHOTS = 'screenshots'
@@ -460,7 +473,6 @@ class CRITsSignature(CRITsCommon, CRITsPatchCommon):
     UPDATE_SIGNATURE_DATA = 'update_signature_data'
     UPDATE_SIGNATURE_TYPE = 'update_signature_type'
     UPDATE_TITLE = 'update_title'
-
 
 
 class CRITsTarget(CRITsCommon, CRITsPatchCommon):

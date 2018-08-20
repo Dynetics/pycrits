@@ -12,7 +12,7 @@ class Indicator(Common):
     Having a hard time with required fields (some nested)
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'indicators/'
+    _URL = '/' + c.API + c.VERSION + 'indicators/'
 
     _fields = [
         ind.ID,
@@ -28,6 +28,7 @@ class Indicator(Common):
         ind.LOWER,
         ind.MODIFIED,
         ind.OBJECTS,
+        ind.REFERENCE,
         ind.RELATIONSHIPS,
         ind.RELEASABILITY,
         ind.SCHEMA_VERSION,
@@ -42,18 +43,18 @@ class Indicator(Common):
         ind.VALUE,
 
         # Exclusive post params
-        ind.ADD_DOMAIN, 
+        ind.ADD_DOMAIN,
         ind.ADD_RELATIONSHIP,
         ind.INDICATOR_CONFIDENCE,
         ind.INDICATOR_IMPACT,
         ind.THREAT_TYPE,
         ind.ATTACK_TYPE,
-        ]
-    
+    ]
+
     # Fields that are REQUIRED to be provided by the user
     # when creating a new object of type INDICATOR
     _default_fields = [
         ind.SOURCE,
-        ind.VALUE,  
+        ind.VALUE,
         ind.TYPE,
     ]

@@ -8,10 +8,9 @@ from .vocabulary import CRITsEmail as ema
 
 class Email(Common):
     '''
-    
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'emails/'
+    _URL = '/' + c.API + c.VERSION + 'emails/'
 
     _fields = [
         ema.ID,
@@ -31,6 +30,7 @@ class Email(Common):
         ema.ORIGINATING_IP,
         ema.RAW_BODY,
         ema.RAW_HEADERS,
+        ema.REFERENCE,
         ema.RELATIONSHIPS,
         ema.RELEASABILITY,
         ema.REPLY_TO,

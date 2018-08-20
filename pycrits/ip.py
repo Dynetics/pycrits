@@ -8,11 +8,9 @@ from .vocabulary import CRITsIP as ip
 
 class IP(Common):
     '''
-        ***NOT YET WORKING FOR IPs
-    Having a hard time with required fields (some nested)
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'ips/'
+    _URL = '/' + c.API + c.VERSION + 'ips/'
 
     _fields = [
         ip.ID,
@@ -25,6 +23,7 @@ class IP(Common):
         ip.LOCATIONS,
         ip.MODIFIED,
         ip.OBJECTS,
+        ip.REFERENCE,
         ip.RELATIONSHIPS,
         ip.RELEASABILITY,
         ip.SCHEMA_VERSION,

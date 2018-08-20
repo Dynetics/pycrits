@@ -10,7 +10,7 @@ class Event(Common):
     '''
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'events/'
+    _URL = '/' + c.API + c.VERSION + 'events/'
 
     _fields = [
         eve.ID,
@@ -24,6 +24,7 @@ class Event(Common):
         eve.LOCATIONS,
         eve.MODIFIED,
         eve.OBJECTS,
+        eve.REFERENCE,
         eve.RELATIONSHIPS,
         eve.RELEASABILITY,
         eve.SCHEMA_VERSION,
@@ -36,7 +37,7 @@ class Event(Common):
 
         #Exclusive post params
         eve.DATE,
-        ]
+    ]
 
     # Fields that are REQUIRED to be provided by the user
     # when creating a new object of type EVENT

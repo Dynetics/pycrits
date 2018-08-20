@@ -8,10 +8,9 @@ from .vocabulary import CRITsBackdoor as bac
 
 class Backdoor(Common):
     '''
-    
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'backdoors/'
+    _URL = '/' + c.API + c.VERSION + 'backdoors/'
 
     _fields = [
         bac.ID,
@@ -24,6 +23,7 @@ class Backdoor(Common):
         bac.MODIFIED,
         bac.NAME,
         bac.OBJECTS,
+        bac.REFERENCE,
         bac.RELATIONSHIPS,
         bac.RELEASABILITY,
         bac.SCHEMA_VERSION,

@@ -10,7 +10,7 @@ class Raw(Common):
     '''
     '''
 
-    _URL = get_api_url() + '/' + c.API + c.VERSION + 'raw_data/'
+    _URL = '/' + c.API + c.VERSION + 'raw_data/'
 
     _fields = [
         raw.ID,
@@ -28,6 +28,7 @@ class Raw(Common):
         raw.MD5,
         raw.MODIFIED,
         raw.OBJECTS,
+        raw.REFERENCE,
         raw.RELATIONSHIPS,
         raw.RELEASABILITY,
         raw.SCHEMA_VERSION,
@@ -52,8 +53,8 @@ class Raw(Common):
     # If UPLOAD_TYPE is 'file', a file must be specified in the call to .new along with the requireds below
     # If UPLOAD_TYPE is 'metadata', data must be specified
     # These checks aren't done by us, so nothing prevents the user from messing this up big time. The
-    # web api will return a pretty specific error for the user, though. This is something to look at 
-    # in the future. 
+    # web api will return a pretty specific error for the user, though. This is something to look at
+    # in the future.
     _default_fields = [
         raw.SOURCE,
         raw.UPLOAD_TYPE,
